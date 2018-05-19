@@ -1,0 +1,18 @@
+{% extends 'task/base.html' %}
+{% block content %}
+
+    <form method="post"> {% csrf_token %}
+        {{ form.as_ul }}
+        <button type="submit">Search!</button>
+    </form>
+    {% if task_who %}
+        {% for task in task_who %}
+            <li><a href="{% url 'task_detail' pk=task.pk %}">{{ task }}</a></li>
+        {% endfor %}
+    {% else %}
+        {% for task in tasks_list %}
+            <li><a href="{% url 'task_detail' pk=task.pk %}">{{ task }}</a></li>
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}

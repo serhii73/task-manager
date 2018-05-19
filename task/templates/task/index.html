@@ -1,0 +1,22 @@
+{% extends 'task/base.html' %}
+{% block content %}
+    <div class="container top_margin">
+        <h2>
+            Welcome to the task manager!
+        </h2>
+        {% if not user.is_authenticated %}
+            <h3>Login</h3>
+            <form id="login_form" method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                Username: <input type="text" name="username" value="" size="50"/>
+                <br/>
+                Password: <input type="password" name="password" value="" size="50"/>
+                <br/>
+                <input type="submit" value="submit"/>
+            </form>
+        {% endif %}
+    {% if user.is_authenticated %}
+        <h6>Choose the action at the pane top!</h6>
+    {% endif %}
+    </div>
+{% endblock %}

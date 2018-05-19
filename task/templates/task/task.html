@@ -1,0 +1,20 @@
+{% extends 'task/base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+
+    <div class="container">
+        <h2>Form</h2>
+        {% if sent %}
+            <h2>Thank you for create task!</h2>
+        {% else %}
+            <form method="POST">{% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit">
+            </form>
+        {% endif %}
+    </div>
+    <script type="text/javascript"
+            src="{% static 'js/search_task_ajax.js' %}"></script>
+
+{% endblock %}

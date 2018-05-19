@@ -1,0 +1,24 @@
+{% extends 'task/base.html' %}
+{% block content %}
+    {% if task.created_date %}
+        <small>
+            {{ task.created_date }}
+        </small>
+    {% endif %}
+    <br>
+    <small>{{ task.author }}</small>
+    <h2>{{ task.name_task }}</h2>
+    <p>{{ task.description_task|linebreaksbr }}</p>
+    <p>The deadline - {{ task.deadline_task }}</p>
+    <p>Category - {{ task.category_task }}</p>
+    <p>Label - {% for label in task.label_task.all %}
+        {{ label }} {% if not forloop.last %},{% endif %}
+    {% empty %}
+        no labels
+    {% endfor %}</p>
+    <p>Executive - {% for man in task.executive_man.all %}
+        {{ man }} {% if not forloop.last %},{% endif %}
+    {% empty %}
+        no Executive
+    {% endfor %}</p>
+{% endblock %}
